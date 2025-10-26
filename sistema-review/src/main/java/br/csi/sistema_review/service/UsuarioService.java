@@ -1,4 +1,13 @@
-@service
+package br.csi.sistema_review.service;
+
+import br.csi.sistema_review.model.usuario.Usuario;
+import br.csi.sistema_review.model.usuario.UsuarioRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
+
+@Service
 public class UsuarioService {
 
     private final UsuarioRepository repository;
@@ -14,17 +23,21 @@ public class UsuarioService {
     public List<Usuario> listar(){
         return this.repository.findAll();
     }
+
     public Usuario getUsuario(Long id){
         return this.repository.findById(id).get();
     }
+
     public void excluir(Long id){ 
         this.repository.deleteById(id);
     }
+
     public void atualizar(Usuario usuario){
-        Usuario u = this.repository.getReferencById(usuario.getId());
+        Usuario u = this.repository.getReferenceById(usuario.getId());
         u.setNome(usuario.getNome());
         u.setEmail(usuario.getEmail());
         u.setSenha(usuario.getSenha());
+        u.setPermissao(usuario.getPermissao());
         this.repository.save(u);
     }
 
@@ -32,8 +45,8 @@ public class UsuarioService {
         Usuario u = this.repository.findUsuarioByUuid(usuario.getUuid());
         u.setNome(usuario.getNome());
         u.setEmail(usuario.getEmail());
-        u.setMatricula(usuario.getMatricula());
-        u.setEndereco(usuario.getEndereco());
+        u.setSenha(usuario.getSenha());
+        u.setPermissao(usuario.getPermissao());
         this.repository.save(u);
     }
 
