@@ -17,6 +17,9 @@ public class UsuarioService {
     }
 
     public void salvar(Usuario usuario){
+        if(usuario.getPermissao() == null){
+            usuario.setPermissao(2);
+        }
         this.repository.save(usuario);
     }
 

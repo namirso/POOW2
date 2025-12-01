@@ -28,7 +28,7 @@ public class UsuarioController {
     }
 
     /* http://localhost:8080/sistema-reviews/usuario/listar */
-    @GetMapping("/listar")
+    @GetMapping()
     public List<Usuario> listar(){
         return this.service.listar();
     }
@@ -55,8 +55,6 @@ public class UsuarioController {
         System.out.println(json);
     }
 
-
-    /* http://localhost:8080/avaliador-de-projetos/aluno */
     @PostMapping()
     @Operation(summary = "Criar um novo usuário", description = "Cria um novo usuário e o adiciona à lista")
     @ApiResponses(value = {
